@@ -15,6 +15,14 @@
       "isActive": true,
       "email": "jane@example.com",
       "password": "jane123"
+    },
+    {
+      "name": "Mustafa",
+      "role": "user",
+      "isActive": true,
+      "email": "mustafataheer47@gmail.com",
+      "password": "M12345678",
+      "id": 3
     }
   ],
   "campaigns": [
