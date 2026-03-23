@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "role": "admin",
+      "isActive": true,
+      "email": "admin@fundiy.com",
+      "password": "admin123"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "role": "user",
+      "isActive": true,
+      "email": "jane@example.com",
+      "password": "jane123"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": 1,
+      "title": "Smart Watch",
+      "creatorId": 2,
+      "goal": 5000,
+      "deadline": "2026-12-31",
+      "isApproved": true,
+      "description": "A smart watch project",
+      "image": ""
+    }
+  ],
+  "pledges": [
+    {
+      "id": 1,
+      "campaignId": 1,
+      "userId": 2,
+      "amount": 100
+    }
+  ]
+}
