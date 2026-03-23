@@ -28,9 +28,11 @@ async function loadUsers() {
     div.innerHTML = `
       <p><strong>${user.name}</strong> - ${user.email} - ${user.role}</p>
       <p>Status: ${user.isActive ? "✅ Active" : "🚫 Banned"}</p>
-      <button class="btn btn-red" onclick="banUser(${user.id}, ${user.isActive})">
+    ${user.role !== "admin" ? `
+    <button class="btn btn-red" onclick="banUser(${user.id}, ${user.isActive})">
         ${user.isActive ? "Ban" : "Unban"}
-      </button>
+    </button>
+    ` : ""}
     `;
     container.appendChild(div);
   });
