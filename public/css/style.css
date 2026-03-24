@@ -332,3 +332,51 @@ footer {
   color: var(--green);
   font-weight: 700;
 }
+
+
+@media (max-width: 768px) {
+  header {
+    padding: 0 1rem;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 1rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  nav span {
+    font-size: 0.8rem;
+  }
+
+  nav button {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  #campaigns-container {
+    padding: 10px 16px 40px;
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    padding: 16px;
+  }
+
+  .filters input {
+    width: 100%;
+  }
+
+  .form-container {
+    margin: 30px 16px;
+    padding: 24px;
+  }
+}
