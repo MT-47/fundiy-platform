@@ -1,0 +1,25 @@
+
+.form-container {
+  max-width: 560px;
+  margin: 50px auto;
+}
+
+.form-container h2 {
+  font-size: 2rem;
+  margin-bottom: 32px;
+}
+
+.form-container .btn {
+  margin-top: 10px;
+  background: var(--green);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px;
+}
+
+.form-container .btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 24px rgba(0,217,126,0.3);
+}

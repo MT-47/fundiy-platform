@@ -1,0 +1,55 @@
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+main h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 36px;
+  letter-spacing: -0.5px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+#admin-name {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#logout-btn {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.25s;
+  margin-left: 12px;
+}
+
+#logout-btn:hover {
+  background: var(--red);
+  color: white;
+}
