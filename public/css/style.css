@@ -335,6 +335,18 @@ footer {
 
 
 @media (max-width: 768px) {
+    
+  main {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-container {
+    margin: 30px 16px;
+    padding: 24px;
+    width: 100%;
+  }
+
   header {
     padding: 0 1rem;
     height: auto;
