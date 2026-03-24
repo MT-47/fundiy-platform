@@ -6,7 +6,7 @@ A full-stack crowdfunding platform built using **Vanilla HTML5, CSS3, JavaScript
 
 ## 🚀 Live Demo
 
-🔗 [View Live Demo](https://fundiy-platform-production.up.railway.app/)
+🔗 [View Live Demo](fundiy-platform-production-f800.up.railway.app)
 
 ---
 
