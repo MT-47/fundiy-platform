@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fundiy - Create Campaign</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">Fundiy</div>
+    <nav id="main-nav"></nav>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2>Start a Campaign</h2>
+      <div id="error-msg"></div>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="title" placeholder="Campaign title" />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="description" placeholder="Describe your campaign"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Goal ($)</label>
+        <input type="number" id="goal" placeholder="Fundraising goal" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input type="date" id="deadline" aria-label="Campaign deadline date" />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" id="image" accept="image/*" />
+      </div>
+
+      <button class="btn btn-green" id="create-btn">Create Campaign</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Fundiy. All rights reserved to Mustafa Taher - .Net ITI Zagazig.</p>
+  </footer>
+
+  <script src="js/create-campaign.js"></script>
+</body>
+</html>
