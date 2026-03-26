@@ -1,14 +1,6 @@
-# 🌱 Fundiy - Crowdfunding Platform
+# 🌱 Supportify - Crowdfunding Platform
 
 A full-stack crowdfunding platform built using **Vanilla HTML5, CSS3, JavaScript (ES6+)**, and **JSON Server**.
-
----
-
-## 🚀 Live Demo
-
-🔗 [View Live Demo](https://fundiy-platform-production.up.railway.app/)
-
----
 
 ## 📋 Features
 
@@ -47,10 +39,10 @@ A full-stack crowdfunding platform built using **Vanilla HTML5, CSS3, JavaScript
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/MT-47/fundiy-platform.git
+git clone https://github.com/MT-47/supportify-platform.git
 
 # 2. Navigate to the project folder
-cd fundiy-platform
+cd supportify-platform
 
 # 3. Install dependencies
 npm install
@@ -82,7 +74,7 @@ http://localhost:3000/index.html
 ## 📁 Project Structure
 
 ```folder
-fundiy-platform/
+supportify-platform/
 │
 ├── public/
 │   ├── css/
