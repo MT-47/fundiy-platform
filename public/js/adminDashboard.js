@@ -23,17 +23,17 @@ async function loadUsers() {
   const container = document.getElementById("users-container");
   container.innerHTML = "";
 
-  users.forEach(user => {
+  users.filter(user => user.role !== "admin").forEach(user => {
     const div = document.createElement("div");
     div.classList.add("admin-card");
     div.innerHTML = `
-      <p><strong>${user.name}</strong> - ${user.email} - ${user.role}</p>
+      <p><strong>${user.name}</strong> - ${user.email}</p>
       <p>Status: ${user.isActive ? "✅ Active" : "🚫 Banned"}</p>
-    ${user.role !== "admin" ? `
+    ${`
     <button class="btn btn-red" onclick="banUser(${user.id}, ${user.isActive})">
         ${user.isActive ? "Ban" : "Unban"}
     </button>
-    ` : ""}
+    `}
     `;
     container.appendChild(div);
   });

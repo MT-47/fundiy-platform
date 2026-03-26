@@ -65,9 +65,9 @@ http://localhost:3000/index.html
 
 ## 👤 Default Admin Account
 
-| Email              | Password |
-|--------------------|----------|
-| <admin@fundiy.com> | admin123 |
+| Email                  | Password |
+|------------------------|----------|
+| <admin@supportify.com> | admin123 |
 
 ---
 

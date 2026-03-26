@@ -5,7 +5,7 @@
       "name": "Admin",
       "role": "admin",
       "isActive": true,
-      "email": "admin@fundiy.com",
+      "email": "admin@supportify.com",
       "password": "admin123"
     },
     {
@@ -28,7 +28,7 @@
       "name": "Ahmed",
       "role": "user",
       "isActive": true,
-      "email": "ahmed@example.cpm",
+      "email": "ahmed@example.com",
       "password": "12345678",
       "id": 4
     }
