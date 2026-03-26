@@ -1,5 +1,5 @@
-// const BASE_URL = "http://localhost:3000";
-const BASE_URL = window.location.origin;
+const BASE_URL = "http://localhost:3000";
+// const BASE_URL = window.location.origin;
 
 document.getElementById("login-btn").addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
