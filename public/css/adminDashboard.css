@@ -79,9 +79,3 @@ section {
   display: flex;
   gap: 10px;
 }
-
-.modal-actions .btn {
-  width: 100%;
-  padding: 10px;
-  font-size: 0.85rem;
-}
