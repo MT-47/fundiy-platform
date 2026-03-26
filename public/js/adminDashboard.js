@@ -83,9 +83,39 @@ async function approveCampaign(id, isApproved) {
 
 
 async function deleteCampaign(id) {
-  if (!confirm("Are you sure you want to delete this campaign?")) return;
+  const ok = await showConfirm("Delete this campaign?");
+  if (!ok) return;
+
   await fetch(`${BASE_URL}/campaigns/${id}`, { method: "DELETE" });
   loadCampaigns();
+}
+
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("modal-message");
+    const yesBtn = document.getElementById("confirm-yes");
+    const noBtn = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = () => {
+      modal.classList.add("hidden");
+      yesBtn.onclick = null;
+      noBtn.onclick = null;
+    };
+
+    yesBtn.onclick = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    noBtn.onclick = () => {
+      cleanup();
+      resolve(false);
+    };
+  });
 }
 
 
