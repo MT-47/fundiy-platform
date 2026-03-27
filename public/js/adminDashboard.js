@@ -12,7 +12,7 @@ document.getElementById("admin-name").textContent = `Welcome, ${currentUser.name
 
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.removeItem("currentUser");
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 });
 
 
