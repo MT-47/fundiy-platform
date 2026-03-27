@@ -1,150 +1,150 @@
 {
   "users": [
     {
+      "id": 1,
       "name": "Admin",
-      "email": "admin@supportify.com",
-      "password": "admin123",
       "role": "admin",
       "isActive": true,
-      "id": 1
+      "email": "admin@supportify.com",
+      "password": "admin123"
     },
     {
+      "id": 2,
       "name": "Jane Doe",
-      "email": "jane@example.com",
-      "password": "jane123",
       "role": "user",
       "isActive": true,
-      "id": 2
+      "email": "jane@example.com",
+      "password": "jane123"
     },
     {
       "name": "Mustafa",
-      "email": "mustafataheer47@gmail.com",
-      "password": "M12345678",
       "role": "user",
       "isActive": true,
+      "email": "mustafataheer47@gmail.com",
+      "password": "M12345678",
       "id": 3
     },
     {
       "name": "Ahmed",
-      "email": "ahmed@example.com",
-      "password": "12345678",
       "role": "user",
       "isActive": true,
+      "email": "ahmed@example.com",
+      "password": "12345678",
       "id": 4
     },
     {
       "name": "Omar",
-      "email": "omar@e.com",
-      "password": "123456",
       "role": "user",
       "isActive": true,
+      "email": "omar@e.com",
+      "password": "123456",
       "id": 5
     },
     {
       "name": "Mariam",
-      "email": "mariam@e.com",
-      "password": "123456",
       "role": "user",
       "isActive": true,
+      "email": "mariam@e.com",
+      "password": "123456",
       "id": 6
     },
     {
       "name": "Sara",
-      "email": "Sara@e.com",
-      "password": "123456",
       "role": "user",
       "isActive": true,
+      "email": "Sara@e.com",
+      "password": "123456",
       "id": 7
     }
   ],
   "campaigns": [
     {
+      "id": 1,
       "title": "Smart Watch",
-      "description": "A smart watch project",
       "creatorId": 2,
       "goal": 5000,
       "deadline": "2026-12-31",
       "isApproved": true,
-      "image": "./images/smart-watch.png",
-      "id": 1
+      "description": "A smart watch project",
+      "image": "./images/smart-watch.png"
     },
     {
       "title": "Save Stray Animals",
-      "description": "Help us rescue, treat, and find homes for stray animals in need of care and love.",
       "creatorId": 7,
       "goal": 3000,
       "deadline": "2026-10-10",
       "isApproved": true,
+      "description": "Help us rescue, treat, and find homes for stray animals in need of care and love.",
       "image": "./images/Save-Stray-Animals.png",
       "id": 2
     },
     {
       "title": "Tree Planting Initiative",
-      "description": "Join us in planting trees to fight climate change and make our environment healthier",
       "creatorId": 6,
       "goal": 4000,
       "deadline": "2026-09-01",
       "isApproved": true,
+      "description": "Join us in planting trees to fight climate change and make our environment healthier",
       "image": "./images/Tree-Planting-Initiative.png",
       "id": 3
     },
     {
       "title": "Help Save Ahmed’s Life",
-      "description": "Ahmed urgently needs surgery for a critical heart condition. Your support can save his life.",
       "creatorId": 4,
       "goal": 10000,
       "deadline": "2026-12-30",
       "isApproved": true,
+      "description": "Ahmed urgently needs surgery for a critical heart condition. Your support can save his life.",
       "image": "./images/Help-Save-Ahmed’s-Life.png",
       "id": 4
     },
     {
       "title": "Support Omar after losing his job",
-      "description": "Omar lost his job due to downsizing and needs support to cover basic expenses until he finds new employment.",
       "creatorId": 5,
       "goal": 300,
       "deadline": "2030-05-22",
       "isApproved": true,
+      "description": "Omar lost his job due to downsizing and needs support to cover basic expenses until he finds new employment.",
       "image": "./images/Support-Omar-after-losing-his job.png",
       "id": 5
     },
     {
       "title": "Spring Fruits",
-      "description": "hhhhhhhhhh",
       "creatorId": 3,
       "goal": 200,
       "deadline": "2030-12-31",
       "isApproved": true,
+      "description": "hhhhhhhhhh",
       "image": "./images/spring-fruits.png",
       "id": 6
     },
     {
       "title": "Coffee Shop",
-      "description": "Fund my coffee shop plz",
       "creatorId": 3,
       "goal": 2000,
       "deadline": "2030-04-29",
       "isApproved": true,
+      "description": "Fund my coffee shop plz",
       "image": "./images/coffee-shop.png",
       "id": 7
     },
     {
       "title": "School",
-      "description": "Building new school",
       "creatorId": 4,
       "goal": 50000,
       "deadline": "2030-12-31",
       "isApproved": true,
+      "description": "Building new school",
       "image": "./images/school-building.png",
       "id": 8
     }
   ],
   "pledges": [
     {
+      "id": 1,
       "campaignId": 1,
       "userId": 2,
-      "amount": 100,
-      "id": 1
+      "amount": 100
     },
     {
       "campaignId": 1,
@@ -205,6 +205,12 @@
       "userId": 7,
       "amount": 500,
       "id": 11
+    },
+    {
+      "campaignId": 5,
+      "userId": 4,
+      "amount": 40,
+      "id": 12
     }
   ]
 }
