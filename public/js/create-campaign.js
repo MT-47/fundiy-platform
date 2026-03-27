@@ -61,11 +61,11 @@ document.getElementById("create-btn").addEventListener("click", async () => {
 
   const newCampaign = {
     title,
+    description,
     creatorId: currentUser.id,
     goal,
     deadline,
     isApproved: false,
-    description,
     image
   };
 

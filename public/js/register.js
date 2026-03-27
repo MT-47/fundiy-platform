@@ -56,7 +56,7 @@ document.getElementById("register-btn").addEventListener("click", async () => {
     const res = await fetch(`${BASE_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, role: "user", isActive: true, email, password })
+      body: JSON.stringify({ name, email, password, role: "user", isActive: true})
     });
 
     const user = await res.json();
