@@ -4,21 +4,8 @@ main {
   padding: 40px 24px 60px;
 }
 
-/* Welcome, Admin */
 #admin-name {
   color: var(--green);
   font-weight: 600;
   font-size: 0.9rem;
-}
-
-/* Admin Dashboard */
-main h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--text);
-  margin-bottom: 36px;
-  letter-spacing: -0.5px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
 }
