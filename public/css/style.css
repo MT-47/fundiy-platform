@@ -2,24 +2,27 @@
 
 /*  VARIABLES */
 :root {
-  --bg:          #0f0f13;
-  --surface:     #1a1a24;
-  --surface2:    #22222f;
-  --border:      #2e2e3e;
-  --white:       #ffffff;
-  --green:       #00d97e;
-  --green-dark:  #00b568;
-  --black:       #000000;
-  --red:         #ff4d6d;
-  --red-dark:    #e03055;
-  --text:        #f0f0f5;
-  --text-muted:  #8888a0;
-  --text-dim:    #55556a;
-  --radius:      14px;
-  --radius-sm:   8px;
-  --shadow:      0 8px 32px rgba(0,0,0,0.4);
+  --bg:         #0f0f13;
+  --surface:    #1a1a24;
+  --surface2:   #22222f;
+  --border:     #2e2e3e;
+  --white:      #ffffff;
+  --green:      #00d97e;
+  --green-dark: #00b568;
+  --black:      #000000;
+  --red:        #ff4d6d;
+  --red-dark:   #e03055;
+  --text:       #f0f0f5;
+  --text-muted: #8888a0;
+  --text-dim:   #55556a;
+  --blur:       rgba(15,15,19,0.7);
+  --radius:       14px;
+  --radius-sm:    8px;
+  --shadow:       0 8px 32px rgba(0,0,0,0.4);
+  --shadow-red:   0 0 0 3px rgba(255,77,109,0.1);
   --shadow-green: 0 0 0 3px rgba(0,217,126,0.1);
-  --transition:  0.25s cubic-bezier(0.4,0,0.2,1);
+  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
+  --transition-nav: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* RESET */
@@ -51,7 +54,7 @@ body {
 /* LAYOUT */
 main {
   margin: 0 auto;
-  padding: 20px 20px;
+  padding: 0px;
 }
 
 section h3 {
@@ -90,6 +93,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: var(--transition-nav)
 }
 
 nav a {
@@ -139,7 +143,7 @@ footer {
   border-top: 1px solid var(--border);
   color: var(--text-dim);
   font-size: 0.85rem;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 /* BUTTONS */
@@ -303,7 +307,7 @@ footer {
 
 .input-error {
   border-color: var(--red) !important;
-  box-shadow: 0 0 0 3px rgba(255,77,109,0.1) !important;
+  box-shadow: var(--shadow-red) !important;
 }
 
 /* ADMIN / USER CARDS */
@@ -346,9 +350,7 @@ footer {
   margin-right: 8px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   DASHBOARD WELCOME HEADING
-══════════════════════════════════════════════════════════ */
+/* DASHBOARD WELCOME HEADING */
 #welcome-msg {
   font-family: 'Fraunces', serif;
   font-size: 2rem;
@@ -360,9 +362,7 @@ footer {
   border-bottom: 1px solid var(--border);
 }
 
-/* ══════════════════════════════════════════════════════════
-   PLEDGE ITEM
-══════════════════════════════════════════════════════════ */
+/* PLEDGE ITEM */
 .pledge-item {
   display: flex;
   justify-content: space-between;
@@ -380,13 +380,11 @@ footer {
   font-weight: 700;
 }
 
-/* ══════════════════════════════════════════════════════════
-   MODAL
-══════════════════════════════════════════════════════════ */
+/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(15,15,19,0.7);
+  background: var(--blur);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   display: flex;
@@ -421,9 +419,10 @@ footer {
 }
 
 .modal-box-large {
+  margin-top: 68px;
   width: 480px;
   max-width: 95vw;
-  max-height: 85vh;
+  max-height: 80vh;
   overflow-y: auto;
   text-align: left;
 }
@@ -441,22 +440,19 @@ footer {
   background: var(--surface2);
 }
 
-/* ══════════════════════════════════════════════════════════
-   NAVBAR BURGER (MOBILE)
-══════════════════════════════════════════════════════════ */
+/* NAVBAR BURGER (MOBILE) */
 .burger {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 6px;
+  padding: 16px;
   border-radius: var(--radius-sm);
   background: transparent;
   border: none;
-  transition: background var(--transition);
 }
 
-.burger:hover { background: var(--surface); }
+.burger:hover { background: var(--surface2); }
 
 .burger span {
   display: block;
@@ -465,7 +461,6 @@ footer {
   background: var(--text);
   border-radius: 2px;
   transition: all var(--transition);
-  padding: 0;
 }
 
 .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -480,27 +475,21 @@ footer {
   nav {
     position: fixed;
     top: 68px;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 50%;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 16px;
-
+    padding: 0px 16px ;
     transform: translateY(-120%);
     opacity: 0;
-    pointer-events: none;
-
     transition: all 0.3s ease;
   }
 
   nav.nav-open {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: auto;
   }
 
   nav a,
@@ -510,18 +499,19 @@ footer {
     padding: 12px;
     text-align: left;
   }
+
+  nav button{
+    margin-bottom: 20px;
+  }
 }
 
-/* ══════════════════════════════════════════════════════════
-   HOME PAGE — HERO
-══════════════════════════════════════════════════════════ */
+/* HOME PAGE — HERO */
 .hero {
   position: relative;
   text-align: center;
-  padding: 100px 20px;
+  padding: 50px 20px;
   overflow: hidden;
   background: var(--surface);
-  border-bottom: 1px solid var(--border);
 }
 
 .hero h2 {
@@ -534,10 +524,6 @@ footer {
   letter-spacing: -1px;
 }
 
-.hero h2 span {
-  color: var(--green);
-}
-
 .hero p {
   font-size: 1.1rem;
   color: var(--text-muted);
@@ -545,9 +531,7 @@ footer {
   margin: 0 auto;
 }
 
-/* ══════════════════════════════════════════════════════════
-   HOME PAGE — SEARCH FILTERS
-══════════════════════════════════════════════════════════ */
+/* HOME PAGE — SEARCH FILTERS */
 .filters {
   display: flex;
   gap: 12px;
@@ -570,21 +554,19 @@ footer {
 
 .filters input:focus {
   border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(0,217,126,0.1);
+  box-shadow: var(--shadow-green);
 }
 
 .filters input::placeholder {
   color: var(--text-dim);
 }
 
-/* ══════════════════════════════════════════════════════════
-   HOME PAGE — CAMPAIGN CARDS GRID
-══════════════════════════════════════════════════════════ */
+/* HOME PAGE — CAMPAIGN CARDS GRID */
 #campaigns-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  padding: 10px 16px 40px;
+  padding: 40px;
 }
 
 #campaigns-grid > p {
@@ -594,9 +576,7 @@ footer {
   padding: 40px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   CAMPAIGN CARD
-══════════════════════════════════════════════════════════ */
+/* CAMPAIGN CARD */
 .card {
   background: var(--surface);
   border-radius: var(--radius);
@@ -608,15 +588,14 @@ footer {
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0,217,126,0.3);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border-color: var(--green-dark);
 }
 
 .card img {
   width: 100%;
   height: 190px;
-  object-fit: cover;
-  background: var(--surface2);
+  object-fit: fill;
+  background: var(--surface);
   display: block;
 }
 
@@ -640,13 +619,11 @@ footer {
   overflow: hidden;
 }
 
-/* ══════════════════════════════════════════════════════════
-   CAMPAIGN DETAIL PAGE
-══════════════════════════════════════════════════════════ */
+/* CAMPAIGN DETAIL PAGE */
 .campaign-detail-main {
-  max-width: 860px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 40px 24px 60px;
+  padding: 40px 24px;
 }
 
 #campaign-details {
@@ -661,7 +638,7 @@ footer {
   width: 100%;
   height: 350px;
   object-fit: fill;
-  background: var(--surface2);
+  background: var(--surface);
   display: block;
 }
 
@@ -715,19 +692,15 @@ footer {
 }
 
 #pledge-msg.success {
-  background: rgba(0,217,126,0.1);
-  border: 1px solid rgba(0,217,126,0.3);
+  border: 1px solid;
+  border-color: var(--green-dark);
   color: var(--green);
 }
 
 #pledge-msg.error {
-  background: rgba(255,0,0,0.08);
-  border: 1px solid rgba(255,0,0,0.3);
+  border: 1px solid;
+  border-color: var(--red-dark);
   color: var(--red);
-}
-
-#pledge-section .btn {
-  margin-top: 12px;
 }
 
 #pledges-list {
@@ -751,48 +724,30 @@ footer {
   font-size: 0.92rem;
 }
 
-/* ══════════════════════════════════════════════════════════
-   ADMIN DASHBOARD
-══════════════════════════════════════════════════════════ */
+/* ADMIN DASHBOARD */
 .admin-main {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 24px 60px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   USER DASHBOARD
-══════════════════════════════════════════════════════════ */
+/* USER DASHBOARD */
 .dashboard-main {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 24px 60px;
+  padding: 40px 24px;
 }
 
-.dashboard-main section a {
-  color: var(--green);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.dashboard-main section a:hover {
-  text-decoration: underline;
-}
-
-/* ══════════════════════════════════════════════════════════
-   CREATE CAMPAIGN PAGE
-══════════════════════════════════════════════════════════ */
+/* CREATE CAMPAIGN PAGE */
 .create-campaign-main {
   max-width: 560px;
   margin: 0 auto;
-  padding: 40px 24px 60px;
+  padding: 40px 24px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   LOGIN / REGISTER PAGE
-══════════════════════════════════════════════════════════ */
+/* LOGIN / REGISTER PAGE */
 .auth-main {
   display: flex;
   justify-content: center;
-  padding: 40px 24px 60px;
+  padding: 40px 24px;
 }
