@@ -1,5 +1,4 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
+const BASE_URL = window.location.origin;
 
 function showError(fieldId, errorId, message) {
   document.getElementById(errorId).textContent = message;
@@ -14,7 +13,6 @@ function clearError(fieldId, errorId) {
 function validateEmail() {
   const email = document.getElementById("email").value.trim();
   if (!email) { showError("email", "email-error", "Email is required."); return false; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError("email", "email-error", "Please enter a valid email (e.g. user@example.com)."); return false; }
   clearError("email", "email-error");
   return true;
 }
@@ -30,8 +28,7 @@ document.getElementById("email").addEventListener("input", validateEmail);
 document.getElementById("password").addEventListener("input", validatePassword);
 
 document.getElementById("login-btn").addEventListener("click", async () => {
-  const isValid = [validateEmail(), validatePassword()].every(Boolean);
-  if (!isValid) return;
+  if (![validateEmail(), validatePassword()].every(Boolean)) return;
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -46,21 +43,15 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     }
 
     const user = users[0];
-
     if (!user.isActive) {
       showError("email", "email-error", "Your account has been banned.");
       return;
     }
 
     localStorage.setItem("currentUser", JSON.stringify(user));
+    window.location.href = user.role === "admin" ? "adminDashboard.html" : "index.html";
 
-    if (user.role === "admin") {
-      window.location.href = "adminDashboard.html";
-    } else {
-      window.location.href = "index.html";
-    }
-
-  } catch (err) {
+  } catch {
     document.getElementById("general-error").textContent = "Something went wrong. Try again.";
   }
 });

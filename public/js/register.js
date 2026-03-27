@@ -1,10 +1,4 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
-
-function clearErrors() {
-  document.querySelectorAll(".field-error").forEach(el => el.textContent = "");
-  document.querySelectorAll(".form-group input").forEach(el => el.classList.remove("input-error"));
-}
+const BASE_URL = window.location.origin;
 
 function showError(fieldId, errorId, message) {
   document.getElementById(errorId).textContent = message;
@@ -43,9 +37,9 @@ function validatePassword() {
 
 function validateConfirm() {
   const password = document.getElementById("password").value.trim();
-  const confirmPassword = document.getElementById("confirm-password").value.trim();
-  if (!confirmPassword) { showError("confirm-password", "confirm-error", "Please confirm your password."); return false; }
-  if (password !== confirmPassword) { showError("confirm-password", "confirm-error", "Passwords do not match."); return false; }
+  const confirm = document.getElementById("confirm-password").value.trim();
+  if (!confirm) { showError("confirm-password", "confirm-error", "Please confirm your password."); return false; }
+  if (password !== confirm) { showError("confirm-password", "confirm-error", "Passwords do not match."); return false; }
   clearError("confirm-password", "confirm-error");
   return true;
 }
@@ -56,8 +50,7 @@ document.getElementById("password").addEventListener("input", validatePassword);
 document.getElementById("confirm-password").addEventListener("input", validateConfirm);
 
 document.getElementById("register-btn").addEventListener("click", async () => {
-  const isValid = [validateName(), validateEmail(), validatePassword(), validateConfirm()].every(Boolean);
-  if (!isValid) return;
+  if (![validateName(), validateEmail(), validatePassword(), validateConfirm()].every(Boolean)) return;
 
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -65,32 +58,24 @@ document.getElementById("register-btn").addEventListener("click", async () => {
 
   try {
     const checkRes = await fetch(`${BASE_URL}/users?email=${email}`);
-    const existingUsers = await checkRes.json();
+    const existing = await checkRes.json();
 
-    if (existingUsers.length > 0) {
+    if (existing.length > 0) {
       showError("email", "email-error", "Email already registered.");
       return;
     }
 
-    const newUser = {
-      name,
-      role: "user",
-      isActive: true,
-      email,
-      password
-    };
-
     const res = await fetch(`${BASE_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify({ name, role: "user", isActive: true, email, password })
     });
 
     const user = await res.json();
     localStorage.setItem("currentUser", JSON.stringify(user));
     window.location.href = "index.html";
 
-  } catch (err) {
+  } catch {
     document.getElementById("general-error").textContent = "Something went wrong. Try again.";
   }
 });
