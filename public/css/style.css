@@ -275,7 +275,7 @@ footer {
   text-decoration: underline;
 }
 
-.field-error {
+#error-msg {
   background: rgba(255,77,109,0.12);
   color: var(--red);
   border: 1px solid rgba(255,77,109,0.3);
@@ -283,12 +283,26 @@ footer {
   padding: 10px 14px;
   font-size: 0.88rem;
   font-weight: 500;
-  margin: 8px 0px;
+  margin-bottom: 16px;
   display: none;
 }
-
-.field-error:not(:empty) {
+ 
+#error-msg:not(:empty) {
   display: block;
+}
+
+.field-error {
+  display: block;
+  color: var(--red);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+  min-height: 1em;
+}
+ 
+.input-error {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 3px rgba(255,77,109,0.1) !important;
 }
 
 .admin-card {
