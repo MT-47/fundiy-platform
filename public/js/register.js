@@ -91,6 +91,6 @@ document.getElementById("register-btn").addEventListener("click", async () => {
     window.location.href = "index.html";
 
   } catch (err) {
-    showError("email", "email-error", "Something went wrong. Try again.");
+    document.getElementById("general-error").textContent = "Something went wrong. Try again.";
   }
 });
