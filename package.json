@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Crowdfunding Platform - ITI JS Project",
   "scripts": {
-    "start": "json-server --watch db.json --port $PORT --host 0.0.0.0 --static public"
+    "start": "json-server --watch db.json --port $PORT --host 0.0.0.0 --static public",
+    "dev": "json-server --watch db.json --port 3000 --static public"
   },
   "dependencies": {
     "json-server": "^0.17.4"
