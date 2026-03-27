@@ -70,9 +70,8 @@ async function loadCampaigns() {
     div.innerHTML = `
       <p><strong>${campaign.title}</strong></p>
       <p>Status: ${campaign.isApproved ? "✅ Approved" : "⏳ Pending"}</p>
-      <button class="btn btn-green" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">
-        ${campaign.isApproved ? "Reject" : "Approve"}
-      </button>
+      ${campaign.isApproved ? div.innerHTML = `<button class="btn btn-red" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Reject</button>` : div.innerHTML = `<button class="btn btn-green" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Approve</button>` 
+      }
       <button class="btn btn-red" onclick="deleteCampaign(${campaign.id})">Delete</button>
     `;
     container.appendChild(div);
