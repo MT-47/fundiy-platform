@@ -29,7 +29,6 @@ async function loadCampaigns(query = "") {
       <img src="${campaign.image || 'images/placeholder.png'}" alt="${campaign.title}" />
       <div class="card-body">
         <h3>${campaign.title}</h3>
-        <p>${campaign.description}</p>
         <div class="progress-bar">
           <div class="progress" style="width: ${percent}%"></div>
         </div>

@@ -2,27 +2,27 @@
 
 /*  VARIABLES */
 :root {
-  --bg:         #0f0f13;
-  --surface:    #1a1a24;
-  --surface2:   #22222f;
-  --border:     #2e2e3e;
+  --bg:         #ececec;
+  --surface:    #f4f7f5;
+  --surface2:   #f0f4f2;
+  --border:     #e2e8e5;
+  --text:       #1f2937;
+  --text-muted: #6b7280;
+  --text-dim:   #9ca3af;
+  --green:      #02a95c;
+  --green-dark: #028a4c;
+  --red:        #e5484d;
+  --red-dark:   #c9363c;
   --white:      #ffffff;
-  --green:      #00d97e;
-  --green-dark: #00b568;
-  --black:      #000000;
-  --red:        #ff4d6d;
-  --red-dark:   #e03055;
-  --text:       #f0f0f5;
-  --text-muted: #8888a0;
-  --text-dim:   #55556a;
-  --blur:       rgba(15,15,19,0.7);
+  --black:      #111827;
+  --blur:       rgba(255,255,255,0.7);
   --radius:       14px;
   --radius-sm:    8px;
-  --shadow:       0 8px 32px rgba(0,0,0,0.4);
-  --shadow-red:   0 0 0 3px rgba(255,77,109,0.1);
-  --shadow-green: 0 0 0 3px rgba(0,217,126,0.1);
-  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
-  --transition-nav: transform 0.3s ease, opacity 0.3s ease;
+  --shadow:     0 4px 20px rgba(0,0,0,0.05);
+  --shadow-red:   0 0 0 3px rgba(229,72,77,0.08);
+  --shadow-green: 0 0 0 3px rgba(2,169,92,0.12);
+  --transition:   0.2s ease;
+  --transition-nav: transform 0.25s ease, opacity 0.25s ease;
 }
 
 /* RESET */
@@ -40,7 +40,10 @@ html, body {
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg);
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(2,169,92,0.08), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(2,169,92,0.06), transparent 40%),
+    var(--bg);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
@@ -481,7 +484,7 @@ footer {
     border-bottom: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    padding: 0px 16px ;
+    padding: 16px 16px ;
     transform: translateY(-200%);
     opacity: 0;
     transition: all 0.3s ease;
@@ -579,8 +582,9 @@ footer {
 /* CAMPAIGN CARD */
 .card {
   background: var(--surface);
-  border-radius: var(--radius);
   border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   overflow: hidden;
   transition: all var(--transition);
   cursor: pointer;
@@ -609,14 +613,6 @@ footer {
   font-weight: 700;
   color: var(--text);
   line-height: 1.3;
-}
-
-.card-body p {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  line-height: 1.5;
-  overflow: hidden;
 }
 
 /* CAMPAIGN DETAIL PAGE */
