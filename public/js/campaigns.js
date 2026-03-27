@@ -1,4 +1,7 @@
 const currentUser = getCurrentUser();
+if (currentUser?.role === "admin") {
+  window.location.href = "adminDashboard.html";
+}
 const nav = document.getElementById("main-nav");
 
 nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();

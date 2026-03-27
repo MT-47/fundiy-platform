@@ -1,5 +1,8 @@
 const currentUser = getCurrentUser();
-if (!currentUser || currentUser.role === "admin") {
+if (currentUser?.role === "admin") {
+  window.location.href = "adminDashboard.html";
+}
+if (!currentUser) {
   window.location.href = "login.html";
 }
 

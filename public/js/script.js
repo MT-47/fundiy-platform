@@ -1,7 +1,7 @@
 const currentUser = getCurrentUser();
-
-localStorage.setItem("currentUser", JSON.stringify(user));
-window.location.href = user.role === "admin" ? "adminDashboard.html" : "index.html";
+if (currentUser?.role === "admin") {
+  window.location.href = "adminDashboard.html";
+}
 
 const nav = document.getElementById("main-nav");
 
