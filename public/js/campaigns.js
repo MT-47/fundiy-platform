@@ -1,5 +1,4 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
+const BASE_URL = window.location.origin;
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const nav = document.getElementById("main-nav");
@@ -81,6 +80,27 @@ async function renderPledges(pledges) {
   }
 }
 
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    const msg = document.getElementById("modal-message");
+    const yesBtn = document.getElementById("confirm-yes");
+    const noBtn = document.getElementById("confirm-no");
+
+    msg.textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = () => {
+      modal.classList.add("hidden");
+      yesBtn.onclick = null;
+      noBtn.onclick = null;
+    };
+
+    yesBtn.onclick = () => { cleanup(); resolve(true); };
+    noBtn.onclick = () => { cleanup(); resolve(false); };
+  });
+}
+
 document.getElementById("pledge-btn").addEventListener("click", async () => {
   const pledgeMsg = document.getElementById("pledge-msg");
 
@@ -96,7 +116,7 @@ document.getElementById("pledge-btn").addEventListener("click", async () => {
     return;
   }
 
-  const confirmed = confirm(`Confirm pledge of $${amount}?`);
+  const confirmed = await showConfirm("Confirm pledge of $" + amount + "?");
   if (!confirmed) return;
 
   const newPledge = {

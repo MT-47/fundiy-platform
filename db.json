@@ -83,6 +83,12 @@
       "userId": 3,
       "amount": 1000,
       "id": 3
+    },
+    {
+      "campaignId": 3,
+      "userId": 3,
+      "amount": 20,
+      "id": 4
     }
   ]
 }
