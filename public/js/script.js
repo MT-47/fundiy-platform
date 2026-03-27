@@ -1,24 +1,19 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
+const BASE_URL = window.location.origin;
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const nav = document.getElementById("main-nav");
 
-if (currentUser) {
-  nav.innerHTML = `
-    <span id="user-name">Hi, ${currentUser.name}</span>
+nav.innerHTML = currentUser ? `
+  <span id="user-name">Hi, ${currentUser.name}</span>
     <a href="index.html">Home</a>
     <a href="create-campaign.html">Start Campaign</a>
     <a href="userDashboard.html">Dashboard</a>
     <button onclick="logout()">Logout</button>
-  `;
-} else {
-  nav.innerHTML = `
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-  `;
-}
+` : `
+  <a href="index.html">Home</a>
+  <a href="login.html">Login</a>
+  <a href="register.html">Register</a>
+`;
 
 function logout() {
   localStorage.removeItem("currentUser");
@@ -31,11 +26,6 @@ async function loadCampaigns(query = "") {
 
   const res = await fetch(url);
   const campaigns = await res.json();
-
-  renderCampaigns(campaigns);
-}
-
-async function renderCampaigns(campaigns) {
   const container = document.getElementById("campaigns-container");
   container.innerHTML = "";
 
