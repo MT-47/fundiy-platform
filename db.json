@@ -111,6 +111,18 @@
       "userId": 3,
       "amount": 10,
       "id": 6
+    },
+    {
+      "campaignId": 2,
+      "userId": 2,
+      "amount": 500,
+      "id": 7
+    },
+    {
+      "campaignId": 4,
+      "userId": 2,
+      "amount": 24,
+      "id": 8
     }
   ]
 }
