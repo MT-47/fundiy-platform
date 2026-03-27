@@ -28,6 +28,7 @@ body {
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -122,6 +123,12 @@ nav button {
 nav button:hover {
   background: var(--red);
   color: white;
+}
+
+#user-name {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
@@ -466,32 +473,30 @@ footer {
 
   nav {
     position: fixed;
-    top: 68px;
-    right: 0;
-    width: 220px;
+    left: 0;
+    width: 100%;
+
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 var(--radius) var(--radius);
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 12px;
     gap: 4px;
-    box-shadow: var(--shadow);
-    transform: translateX(110%);
+
+    transform: translateY(-120%); 
     transition: transform var(--transition);
-    z-index: 99;
+
+    z-index: 999;
   }
 
-  nav.nav-open { transform: translateX(0); }
-
-  nav a, nav span {
-    width: 100%;
-    padding: 10px 14px;
+  nav.nav-open {
+    transform: translateY(70%); 
   }
 
-  nav button {
+  nav a, nav span, nav button {
     width: 100%;
-    margin-top: 4px;
+    padding: 12px 14px;
   }
 }

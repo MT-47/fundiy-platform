@@ -5,10 +5,10 @@ const nav = document.getElementById("main-nav");
 
 if (currentUser) {
   nav.innerHTML = `
+    <span id="user-name">Hi, ${currentUser.name}</span>
     <a href="index.html">Home</a>
     <a href="create-campaign.html">Start Campaign</a>
     <a href="userDashboard.html">Dashboard</a>
-    <span>Hi, ${currentUser.name}</span>
     <button onclick="logout()">Logout</button>
   `;
 } else {

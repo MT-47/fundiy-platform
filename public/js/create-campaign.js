@@ -7,10 +7,10 @@ if (!currentUser || currentUser.role === "admin") {
 
 const nav = document.getElementById("main-nav");
 nav.innerHTML = `
+  <span id="user-name">Hi, ${currentUser.name}</span>
   <a href="index.html">Home</a>
   <a href="create-campaign.html">Start Campaign</a>
   <a href="userDashboard.html">Dashboard</a>
-  <span>Hi, ${currentUser.name}</span>
   <button onclick="logout()">Logout</button>
 `;
 

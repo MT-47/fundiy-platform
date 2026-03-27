@@ -15,6 +15,13 @@
     nav.classList.toggle("nav-open");
   });
 
+  document.addEventListener("click", (e) => {
+    if (!header.contains(e.target)) {
+      burger.classList.remove("open");
+      nav.classList.remove("nav-open");
+    }
+  });
+
   nav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       burger.classList.remove("open");
