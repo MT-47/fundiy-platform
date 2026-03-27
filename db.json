@@ -141,10 +141,10 @@
   ],
   "pledges": [
     {
-      "id": 1,
       "campaignId": 1,
       "userId": 2,
-      "amount": 100
+      "amount": 100,
+      "id": 1
     },
     {
       "campaignId": 1,
