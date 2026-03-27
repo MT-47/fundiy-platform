@@ -1,30 +1,4 @@
-
-body {
-  background: var(--bg);
-}
-
-.form-container {
-  max-width: 460px;
-}
-
-.form-container .btn {
-  margin-top: 8px;
-  background: var(--green);
-  color: #000;
-  font-weight: 700;
-}
-
-.form-container .btn:hover {
-  background: var(--green-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0,217,126,0.3);
-}
-
-@media (max-width: 768px) {
-    
-  main {
-    display: flex;
-    justify-content: center;
-  }
-  
+main {
+  display: flex;
+  justify-content: center;
 }
