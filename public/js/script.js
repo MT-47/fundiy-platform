@@ -1,4 +1,8 @@
 const currentUser = getCurrentUser();
+
+localStorage.setItem("currentUser", JSON.stringify(user));
+window.location.href = user.role === "admin" ? "adminDashboard.html" : "index.html";
+
 const nav = document.getElementById("main-nav");
 
 nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();
