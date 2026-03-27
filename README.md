@@ -79,13 +79,6 @@ supportify-platform/
 ├── public/
 │   ├── css/
 │   │   ├── style.css
-│   │   ├── index.css
-│   │   ├── login.css
-│   │   ├── register.css
-│   │   ├── campaigns.css
-│   │   ├── create-campaign.css
-│   │   ├── adminDashboard.css
-│   │   └── userDashboard.css
 │   │
 │   ├── js/
 │   │   ├── script.js
@@ -95,11 +88,13 @@ supportify-platform/
 │   │   ├── create-campaign.js
 │   │   ├── adminDashboard.js
 │   │   └── userDashboard.js
+│   │   └── navbar.js
 │   │
 │   ├── images/
 │   │   ├── coffee-shop.png
 │   │   ├── school-building.jpg
 │   │   └── smart-watch.jpg
+│   │   └── spring-fruits.png
 │   │
 │   ├── index.html
 │   ├── login.html
