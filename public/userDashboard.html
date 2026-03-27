@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Supportify - Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/userDashboard.css" />
 </head>
 <body>
 
@@ -14,7 +13,7 @@
     <nav id="main-nav"></nav>
   </header>
 
-  <main>
+  <main class="dashboard-main">
     <h2 id="welcome-msg"></h2>
 
     <section id="my-campaigns-section">
@@ -46,34 +45,34 @@
     <div class="modal-box modal-box-large">
       <h3 class="modal-title">Edit Campaign</h3>
 
-  <div class="form-group">
-    <label for="edit-title">Title</label>
-    <input type="text" id="edit-title" placeholder="Enter campaign title" />
-    <span class="field-error" id="edit-title-error"></span>
-  </div>
+      <div class="form-group">
+        <label for="edit-title">Title</label>
+        <input type="text" id="edit-title" placeholder="Enter campaign title" />
+        <span class="field-error" id="edit-title-error"></span>
+      </div>
 
-  <div class="form-group">
-    <label for="edit-description">Description</label>
-    <textarea id="edit-description" placeholder="Enter campaign description"></textarea>
-    <span class="field-error" id="edit-description-error"></span>
-  </div>
+      <div class="form-group">
+        <label for="edit-description">Description</label>
+        <textarea id="edit-description" placeholder="Enter campaign description"></textarea>
+        <span class="field-error" id="edit-description-error"></span>
+      </div>
 
-  <div class="form-group">
-    <label for="edit-goal">Goal ($)</label>
-    <input type="number" id="edit-goal" min="1" placeholder="Enter funding goal" />
-    <span class="field-error" id="edit-goal-error"></span>
-  </div>
+      <div class="form-group">
+        <label for="edit-goal">Goal ($)</label>
+        <input type="number" id="edit-goal" min="1" placeholder="Enter funding goal" />
+        <span class="field-error" id="edit-goal-error"></span>
+      </div>
 
-  <div class="form-group">
-    <label for="edit-deadline">Deadline</label>
-    <input type="date" id="edit-deadline" />
-    <span class="field-error" id="edit-deadline-error"></span>
-  </div>
+      <div class="form-group">
+        <label for="edit-deadline">Deadline</label>
+        <input type="date" id="edit-deadline" />
+        <span class="field-error" id="edit-deadline-error"></span>
+      </div>
 
-  <div class="form-group">
-    <label for="edit-image">Image</label>
-    <input type="file" id="edit-image" accept="image/*" />
-  </div>
+      <div class="form-group">
+        <label for="edit-image">Image</label>
+        <input type="file" id="edit-image" accept="image/*" />
+      </div>
 
       <div class="modal-actions">
         <button id="edit-save" class="btn btn-green">Save Changes</button>

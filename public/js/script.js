@@ -5,10 +5,10 @@ const nav = document.getElementById("main-nav");
 
 nav.innerHTML = currentUser ? `
   <span id="user-name">Hi, ${currentUser.name}</span>
-    <a href="index.html">Home</a>
-    <a href="create-campaign.html">Start Campaign</a>
-    <a href="userDashboard.html">Dashboard</a>
-    <button onclick="logout()">Logout</button>
+  <a href="index.html">Home</a>
+  <a href="create-campaign.html">Start Campaign</a>
+  <a href="userDashboard.html">Dashboard</a>
+  <button onclick="logout()">Logout</button>
 ` : `
   <a href="index.html">Home</a>
   <a href="login.html">Login</a>
@@ -26,7 +26,7 @@ async function loadCampaigns(query = "") {
 
   const res = await fetch(url);
   const campaigns = await res.json();
-  const container = document.getElementById("campaigns-container");
+  const container = document.getElementById("campaigns-grid");
   container.innerHTML = "";
 
   if (campaigns.length === 0) {

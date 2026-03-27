@@ -1,25 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap');
 
-/* ── Variables ──────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   VARIABLES
+══════════════════════════════════════════════════════════ */
 :root {
-  --bg: #0f0f13;
-  --surface: #1a1a24;
-  --surface2: #22222f;
-  --border: #2e2e3e;
-  --green: #00d97e;
-  --green-dark: #00b568;
-  --red: #ff4d6d;
-  --red-dark: #e03055;
-  --text: #f0f0f5;
-  --text-muted: #8888a0;
-  --text-dim: #55556a;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.4);
-  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --bg:          #0f0f13;
+  --surface:     #1a1a24;
+  --surface2:    #22222f;
+  --border:      #2e2e3e;
+  --green:       #00d97e;
+  --green-dark:  #00b568;
+  --red:         #ff4d6d;
+  --red-dark:    #e03055;
+  --text:        #f0f0f5;
+  --text-muted:  #8888a0;
+  --text-dim:    #55556a;
+  --radius:      14px;
+  --radius-sm:   8px;
+  --shadow:      0 8px 32px rgba(0,0,0,0.4);
+  --transition:  0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* ── Reset ──────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════════════════ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -35,13 +39,14 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
-/* ── Layout ─────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════════════════ */
 main {
   margin: 0 auto;
   padding: 40px 24px 60px;
 }
 
-/* Shared section spacing & heading style (admin + user dashboards) */
 section {
   margin-bottom: 48px;
 }
@@ -55,7 +60,9 @@ section h3 {
   margin-bottom: 16px;
 }
 
-/* ── Header ─────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   HEADER & NAV
+══════════════════════════════════════════════════════════ */
 header {
   background: rgba(15,15,19,0.85);
   -webkit-backdrop-filter: blur(20px);
@@ -125,13 +132,16 @@ nav button:hover {
   color: white;
 }
 
-#user-name {
+#user-name,
+#admin-name {
   color: var(--green);
   font-weight: 600;
   font-size: 0.9rem;
 }
 
-/* ── Footer ─────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════ */
 footer {
   text-align: center;
   padding: 30px 20px;
@@ -141,7 +151,9 @@ footer {
   margin-top: 60px;
 }
 
-/* ── Buttons ─────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════════════════ */
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -178,7 +190,9 @@ footer {
   transform: translateY(-1px);
 }
 
-/* ── Progress Bar ────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════════════════════════ */
 .progress-bar {
   height: 6px;
   background: var(--border);
@@ -202,7 +216,9 @@ footer {
   margin-bottom: 8px;
 }
 
-/* ── Forms ───────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   FORMS
+══════════════════════════════════════════════════════════ */
 .form-container {
   width: 100%;
   max-width: 420px;
@@ -305,8 +321,7 @@ footer {
   color: var(--text-dim);
 }
 
-/*  Validation  */
-
+/* Validation */
 .field-error {
   display: block;
   color: var(--red);
@@ -321,7 +336,9 @@ footer {
   box-shadow: 0 0 0 3px rgba(255,77,109,0.1) !important;
 }
 
-/*  Admin / User Cards  */
+/* ══════════════════════════════════════════════════════════
+   ADMIN / USER CARDS
+══════════════════════════════════════════════════════════ */
 .admin-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -361,6 +378,9 @@ footer {
   margin-right: 8px;
 }
 
+/* ══════════════════════════════════════════════════════════
+   DASHBOARD WELCOME HEADING
+══════════════════════════════════════════════════════════ */
 #welcome-msg {
   font-family: 'Fraunces', serif;
   font-size: 2rem;
@@ -372,7 +392,9 @@ footer {
   border-bottom: 1px solid var(--border);
 }
 
-/* Pledge Item  */
+/* ══════════════════════════════════════════════════════════
+   PLEDGE ITEM
+══════════════════════════════════════════════════════════ */
 .pledge-item {
   display: flex;
   justify-content: space-between;
@@ -390,7 +412,9 @@ footer {
   font-weight: 700;
 }
 
-/* Modal */
+/* ══════════════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════════════ */
 .modal {
   position: fixed;
   inset: 0;
@@ -428,7 +452,6 @@ footer {
   gap: 10px;
 }
 
-/* Large edit modal */
 .modal-box-large {
   width: 480px;
   max-width: 95vw;
@@ -450,7 +473,9 @@ footer {
   background: var(--surface2);
 }
 
-/* Navbar Burger */
+/* ══════════════════════════════════════════════════════════
+   NAVBAR BURGER (MOBILE)
+══════════════════════════════════════════════════════════ */
 .burger {
   display: none;
   flex-direction: column;
@@ -492,16 +517,301 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 12px;
-    transform: translateY(-120%); 
+    transform: translateY(-120%);
     transition: transform var(--transition);
   }
 
   nav.nav-open {
-    transform: translateY(68%); 
+    transform: translateY(68%);
   }
 
   nav a, nav span, nav button {
     width: 100%;
     padding: 12px 14px;
   }
+}
+
+/* ══════════════════════════════════════════════════════════
+   HOME PAGE — HERO
+══════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px;
+  overflow: hidden;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.hero h2 span {
+  color: var(--green);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HOME PAGE — SEARCH FILTERS
+══════════════════════════════════════════════════════════ */
+.filters {
+  display: flex;
+  gap: 12px;
+  padding: 28px 40px;
+  justify-content: center;
+}
+
+.filters input {
+  padding: 12px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  width: 320px;
+  transition: all 0.25s;
+}
+
+.filters input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(0,217,126,0.1);
+}
+
+.filters input::placeholder {
+  color: var(--text-dim);
+}
+
+/* ══════════════════════════════════════════════════════════
+   HOME PAGE — CAMPAIGN CARDS GRID
+══════════════════════════════════════════════════════════ */
+#campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 10px 40px 60px;
+}
+
+#campaigns-grid > p {
+  color: var(--text-muted);
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 40px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CAMPAIGN CARD
+══════════════════════════════════════════════════════════ */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0,217,126,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: var(--surface2);
+  display: block;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.card-body p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CAMPAIGN DETAIL PAGE
+══════════════════════════════════════════════════════════ */
+.campaign-detail-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+#campaign-details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+#campaign-details img {
+  width: 100%;
+  height: 320px;
+  object-fit: fill;
+  background: var(--surface2);
+  display: block;
+}
+
+#campaign-details h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text);
+  padding: 28px 28px 0;
+  letter-spacing: -0.5px;
+}
+
+#campaign-details p {
+  color: var(--text-muted);
+  padding: 12px 28px;
+  line-height: 1.7;
+  font-size: 0.97rem;
+}
+
+#campaign-details .progress-bar {
+  margin: 4px 28px 8px;
+}
+
+#campaign-details .card-meta {
+  padding: 0 28px 20px;
+}
+
+#pledge-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+
+#pledge-section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 18px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#pledge-msg {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+#pledge-msg.success {
+  background: rgba(0,217,126,0.1);
+  border: 1px solid rgba(0,217,126,0.3);
+  color: var(--green);
+}
+
+#pledge-msg.error {
+  background: rgba(255,0,0,0.08);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: var(--red);
+}
+
+#pledge-section .btn {
+  margin-top: 12px;
+}
+
+#pledges-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+#pledges-list h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 18px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#pledges-list p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ADMIN DASHBOARD
+══════════════════════════════════════════════════════════ */
+.admin-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   USER DASHBOARD
+══════════════════════════════════════════════════════════ */
+.dashboard-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.dashboard-main section a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dashboard-main section a:hover {
+  text-decoration: underline;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CREATE CAMPAIGN PAGE
+══════════════════════════════════════════════════════════ */
+.create-campaign-main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LOGIN / REGISTER PAGE
+══════════════════════════════════════════════════════════ */
+.auth-main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 60px;
 }
