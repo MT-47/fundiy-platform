@@ -79,8 +79,10 @@ supportify-platform/
 ├── public/
 │   ├── css/
 │   │   ├── style.css
+│   │   ├── admin-enhancements.css
 │   │
 │   ├── js/
+│   │   └── utils.js
 │   │   ├── script.js
 │   │   ├── login.js
 │   │   ├── register.js
@@ -92,9 +94,13 @@ supportify-platform/
 │   │
 │   ├── images/
 │   │   ├── coffee-shop.png
-│   │   ├── school-building.jpg
-│   │   └── smart-watch.jpg
+│   │   ├── Help-Save-Ahmed’s-Life.png
+│   │   └── Save-Stray-Animals.png
+│   │   └── school-building.png
+│   │   └── smart-watch.png
 │   │   └── spring-fruits.png
+│   │   └── Support-Omar-after-losing-his job.png
+│   │   └── Tree-Planting-Initiative.png
 │   │
 │   ├── index.html
 │   ├── login.html
