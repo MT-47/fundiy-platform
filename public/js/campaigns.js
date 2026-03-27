@@ -3,21 +3,17 @@ const BASE_URL = window.location.origin;
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const nav = document.getElementById("main-nav");
 
-if (currentUser) {
-  nav.innerHTML = `
-    <span id="user-name">Hi, ${currentUser.name}</span>
+nav.innerHTML = currentUser ? `
+  <span id="user-name">Hi, ${currentUser.name}</span>
     <a href="index.html">Home</a>
     <a href="create-campaign.html">Start Campaign</a>
     <a href="userDashboard.html">Dashboard</a>
     <button onclick="logout()">Logout</button>
-  `;
-} else {
-  nav.innerHTML = `
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-  `;
-}
+` : `
+  <a href="index.html">Home</a>
+  <a href="login.html">Login</a>
+  <a href="register.html">Register</a>
+`;
 
 function logout() {
   localStorage.removeItem("currentUser");
@@ -26,8 +22,24 @@ function logout() {
 
 const params = new URLSearchParams(window.location.search);
 const campaignId = params.get("id");
-
 if (!campaignId) window.location.href = "index.html";
+
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    document.getElementById("modal-message").textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = () => {
+      modal.classList.add("hidden");
+      document.getElementById("confirm-yes").onclick = null;
+      document.getElementById("confirm-no").onclick = null;
+    };
+
+    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
+    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
+  });
+}
 
 async function loadCampaign() {
   const res = await fetch(`${BASE_URL}/campaigns/${campaignId}`);
@@ -72,39 +84,14 @@ async function renderPledges(pledges) {
 
     const div = document.createElement("div");
     div.classList.add("pledge-item");
-    div.innerHTML = `
-      <span>${user.name}</span>
-      <span>$${pledge.amount}</span>
-    `;
+    div.innerHTML = `<span>${user.name}</span><span>$${pledge.amount}</span>`;
     container.appendChild(div);
   }
 }
 
-function showConfirm(message) {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("confirm-modal");
-    const msg = document.getElementById("modal-message");
-    const yesBtn = document.getElementById("confirm-yes");
-    const noBtn = document.getElementById("confirm-no");
-
-    msg.textContent = message;
-    modal.classList.remove("hidden");
-
-    const cleanup = () => {
-      modal.classList.add("hidden");
-      yesBtn.onclick = null;
-      noBtn.onclick = null;
-    };
-
-    yesBtn.onclick = () => { cleanup(); resolve(true); };
-    noBtn.onclick = () => { cleanup(); resolve(false); };
-  });
-}
-
 document.getElementById("pledge-btn").addEventListener("click", async () => {
   const pledgeMsg = document.getElementById("pledge-msg");
-
-  pledgeMsg.classList.remove("success", "error");
+  pledgeMsg.className = "";
 
   if (!currentUser) {
     pledgeMsg.textContent = "Please login to pledge.";
@@ -113,35 +100,26 @@ document.getElementById("pledge-btn").addEventListener("click", async () => {
   }
 
   const amount = Number(document.getElementById("pledge-amount").value);
-
   if (!amount || amount <= 0) {
     pledgeMsg.textContent = "Please enter a valid amount.";
     pledgeMsg.classList.add("error");
     return;
   }
 
-  const confirmed = await showConfirm("Confirm pledge of $ " + amount + "?");
-  if (!confirmed) 
-    {
+  const confirmed = await showConfirm(`Confirm pledge of $${amount}?`);
+  if (!confirmed) {
     pledgeMsg.textContent = "Pledge cancelled.";
-    return
-    };
-
-  const newPledge = {
-    campaignId: Number(campaignId),
-    userId: currentUser.id,
-    amount
-  };
+    return;
+  }
 
   await fetch(`${BASE_URL}/pledges`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newPledge)
+    body: JSON.stringify({ campaignId: Number(campaignId), userId: currentUser.id, amount })
   });
 
   pledgeMsg.textContent = "✅ Pledge successful! Thank you!";
   pledgeMsg.classList.add("success");
-
   document.getElementById("pledge-amount").value = "";
   loadCampaign();
 });
