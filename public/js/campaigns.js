@@ -104,8 +104,11 @@ function showConfirm(message) {
 document.getElementById("pledge-btn").addEventListener("click", async () => {
   const pledgeMsg = document.getElementById("pledge-msg");
 
+  pledgeMsg.classList.remove("success", "error");
+
   if (!currentUser) {
     pledgeMsg.textContent = "Please login to pledge.";
+    pledgeMsg.classList.add("error");
     return;
   }
 
@@ -113,11 +116,16 @@ document.getElementById("pledge-btn").addEventListener("click", async () => {
 
   if (!amount || amount <= 0) {
     pledgeMsg.textContent = "Please enter a valid amount.";
+    pledgeMsg.classList.add("error");
     return;
   }
 
-  const confirmed = await showConfirm("Confirm pledge of $" + amount + "?");
-  if (!confirmed) return;
+  const confirmed = await showConfirm("Confirm pledge of $ " + amount + "?");
+  if (!confirmed) 
+    {
+    pledgeMsg.textContent = "Pledge cancelled.";
+    return
+    };
 
   const newPledge = {
     campaignId: Number(campaignId),
@@ -132,6 +140,8 @@ document.getElementById("pledge-btn").addEventListener("click", async () => {
   });
 
   pledgeMsg.textContent = "✅ Pledge successful! Thank you!";
+  pledgeMsg.classList.add("success");
+
   document.getElementById("pledge-amount").value = "";
   loadCampaign();
 });

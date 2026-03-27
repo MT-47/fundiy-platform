@@ -68,10 +68,16 @@ main {
   margin-bottom: 14px;
 }
 
-#pledge-msg:not(:empty) {
+#pledge-msg.success {
   background: rgba(0,217,126,0.1);
   border: 1px solid rgba(0,217,126,0.3);
   color: var(--green);
+}
+
+#pledge-msg.error {
+  background: rgba(255,0,0,0.08);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: var(--red);
 }
 
 #pledge-section .btn {
