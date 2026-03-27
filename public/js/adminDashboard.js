@@ -1,6 +1,4 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
-
+const BASE_URL = window.location.origin;
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if (!currentUser || currentUser.role !== "admin") {
@@ -9,31 +7,43 @@ if (!currentUser || currentUser.role !== "admin") {
 
 document.getElementById("admin-name").textContent = `Welcome, ${currentUser.name}`;
 
-
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.removeItem("currentUser");
   window.location.href = "index.html";
 });
 
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirm-modal");
+    document.getElementById("modal-message").textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = () => {
+      modal.classList.add("hidden");
+      document.getElementById("confirm-yes").onclick = null;
+      document.getElementById("confirm-no").onclick = null;
+    };
+
+    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
+    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
+  });
+}
 
 async function loadUsers() {
   const res = await fetch(`${BASE_URL}/users`);
   const users = await res.json();
-
   const container = document.getElementById("users-container");
   container.innerHTML = "";
 
-  users.filter(user => user.role !== "admin").forEach(user => {
+  users.filter(u => u.role !== "admin").forEach(user => {
     const div = document.createElement("div");
     div.classList.add("admin-card");
     div.innerHTML = `
       <p><strong>${user.name}</strong> - ${user.email}</p>
       <p>Status: ${user.isActive ? "✅ Active" : "🚫 Banned"}</p>
-    ${`
-    <button class="btn btn-red" onclick="banUser(${user.id}, ${user.isActive})">
+      <button class="btn btn-red" onclick="banUser(${user.id}, ${user.isActive})">
         ${user.isActive ? "Ban" : "Unban"}
-    </button>
-    `}
+      </button>
     `;
     container.appendChild(div);
   });
@@ -48,11 +58,9 @@ async function banUser(id, isActive) {
   loadUsers();
 }
 
-
 async function loadCampaigns() {
   const res = await fetch(`${BASE_URL}/campaigns`);
   const campaigns = await res.json();
-
   const container = document.getElementById("campaigns-container");
   container.innerHTML = "";
 
@@ -71,7 +79,6 @@ async function loadCampaigns() {
   });
 }
 
-
 async function approveCampaign(id, isApproved) {
   await fetch(`${BASE_URL}/campaigns/${id}`, {
     method: "PATCH",
@@ -81,43 +88,12 @@ async function approveCampaign(id, isApproved) {
   loadCampaigns();
 }
 
-
 async function deleteCampaign(id) {
   const ok = await showConfirm("Delete this campaign?");
   if (!ok) return;
-
   await fetch(`${BASE_URL}/campaigns/${id}`, { method: "DELETE" });
   loadCampaigns();
 }
-
-function showConfirm(message) {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("confirm-modal");
-    const msg = document.getElementById("modal-message");
-    const yesBtn = document.getElementById("confirm-yes");
-    const noBtn = document.getElementById("confirm-no");
-
-    msg.textContent = message;
-    modal.classList.remove("hidden");
-
-    const cleanup = () => {
-      modal.classList.add("hidden");
-      yesBtn.onclick = null;
-      noBtn.onclick = null;
-    };
-
-    yesBtn.onclick = () => {
-      cleanup();
-      resolve(true);
-    };
-
-    noBtn.onclick = () => {
-      cleanup();
-      resolve(false);
-    };
-  });
-}
-
 
 loadUsers();
 loadCampaigns();

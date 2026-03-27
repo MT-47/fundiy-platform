@@ -1,18 +1,15 @@
-
 main {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 24px 60px;
 }
 
-/* Welcome, Admin */
 #admin-name {
   color: var(--green);
   font-weight: 600;
   font-size: 0.9rem;
 }
 
-/* Admin Dashboard */
 main h2 {
   font-family: 'Fraunces', serif;
   font-size: 2rem;
@@ -23,20 +20,3 @@ main h2 {
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }
-
-/* All USERS */
-section h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-}
-
-/* white space after users section and campains section */
-section {
-  margin-bottom: 48px;
-}
-
-
