@@ -50,7 +50,6 @@ function showEditModal(campaign) {
 function validateTitle() {
   const value = document.getElementById("edit-title").value.trim();
   if (!value) { showError("edit-title", "edit-title-error", "Title is required."); return false; }
-  if (!/^[a-zA-Z\s]+$/.test(value)) { showError("edit-title", "edit-title-error", "Title must contain letters only."); return false; }
   if (value.length < 3) { showError("edit-title", "edit-title-error", "Title must be at least 3 characters."); return false; }
   clearError("edit-title", "edit-title-error");
   return true;

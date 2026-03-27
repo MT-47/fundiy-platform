@@ -9,7 +9,6 @@ nav.innerHTML = getAuthenticatedNav(currentUser.name);
 function validateTitle() {
   const title = document.getElementById("title").value.trim();
   if (!title) { showError("title", "title-error", "Title is required."); return false; }
-  if (!/^[a-zA-Z\s]+$/.test(title)) { showError("title", "title-error", "Title must contain letters only."); return false; }
   if (title.length < 3) { showError("title", "title-error", "Title must be at least 3 characters."); return false; }
   clearError("title", "title-error");
   return true;
