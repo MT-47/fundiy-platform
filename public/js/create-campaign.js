@@ -1,5 +1,4 @@
-const BASE_URL = "http://localhost:3000";
-// const BASE_URL = window.location.origin;
+const BASE_URL = window.location.origin;
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if (!currentUser || currentUser.role === "admin") {
@@ -29,29 +28,64 @@ function toBase64(file) {
   });
 }
 
+function showError(fieldId, errorId, message) {
+  document.getElementById(errorId).textContent = message;
+  document.getElementById(fieldId).classList.add("input-error");
+}
+
+function clearError(fieldId, errorId) {
+  document.getElementById(errorId).textContent = "";
+  document.getElementById(fieldId).classList.remove("input-error");
+}
+
+function validateTitle() {
+  const title = document.getElementById("title").value.trim();
+  if (!title) { showError("title", "title-error", "Title is required."); return false; }
+  if (!/^[a-zA-Z\s]+$/.test(title)) { showError("title", "title-error", "Title must contain letters only."); return false; }
+  if (title.length < 3) { showError("title", "title-error", "Title must be at least 3 characters."); return false; }
+  clearError("title", "title-error");
+  return true;
+}
+
+function validateDescription() {
+  const desc = document.getElementById("description").value.trim();
+  if (!desc) { showError("description", "description-error", "Description is required."); return false; }
+  if (desc.length < 10) { showError("description", "description-error", "Description must be at least 10 characters."); return false; }
+  clearError("description", "description-error");
+  return true;
+}
+
+function validateGoal() {
+  const goal = Number(document.getElementById("goal").value);
+  if (!goal && goal !== 0) { showError("goal", "goal-error", "Goal amount is required."); return false; }
+  if (goal <= 0) { showError("goal", "goal-error", "Goal must be greater than $0."); return false; }
+  clearError("goal", "goal-error");
+  return true;
+}
+
+function validateDeadline() {
+  const deadline = document.getElementById("deadline").value;
+  if (!deadline) { showError("deadline", "deadline-error", "Deadline is required."); return false; }
+  const today = new Date().toISOString().split("T")[0];
+  if (deadline <= today) { showError("deadline", "deadline-error", "Deadline must be in the future."); return false; }
+  clearError("deadline", "deadline-error");
+  return true;
+}
+
+document.getElementById("title").addEventListener("input", validateTitle);
+document.getElementById("description").addEventListener("input", validateDescription);
+document.getElementById("goal").addEventListener("input", validateGoal);
+document.getElementById("deadline").addEventListener("change", validateDeadline);
+
 document.getElementById("create-btn").addEventListener("click", async () => {
+  const isValid = [validateTitle(), validateDescription(), validateGoal(), validateDeadline()].every(Boolean);
+  if (!isValid) return;
+
   const title = document.getElementById("title").value.trim();
   const description = document.getElementById("description").value.trim();
   const goal = Number(document.getElementById("goal").value);
   const deadline = document.getElementById("deadline").value;
   const imageFile = document.getElementById("image").files[0];
-  const errorMsg = document.getElementById("error-msg");
-
-  if (!title || !description || !goal || !deadline) {
-    errorMsg.textContent = "Please fill in all fields.";
-    return;
-  }
-
-  if (goal <= 0) {
-    errorMsg.textContent = "Goal must be greater than 0.";
-    return;
-  }
-
-  const today = new Date().toISOString().split("T")[0];
-  if (deadline <= today) {
-    errorMsg.textContent = "Deadline must be in the future.";
-    return;
-  }
 
   let image = "";
   if (imageFile) {
@@ -75,10 +109,9 @@ document.getElementById("create-btn").addEventListener("click", async () => {
       body: JSON.stringify(newCampaign)
     });
 
-    alert("✅ Campaign created! Waiting for admin approval.");
     window.location.href = "index.html";
 
   } catch (err) {
-    errorMsg.textContent = "Something went wrong. Try again.";
+    document.getElementById("general-error").textContent = "Something went wrong. Try again.";
   }
 });
