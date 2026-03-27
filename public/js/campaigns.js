@@ -1,45 +1,11 @@
-const BASE_URL = window.location.origin;
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 const nav = document.getElementById("main-nav");
 
-nav.innerHTML = currentUser ? `
-  <span id="user-name">Hi, ${currentUser.name}</span>
-    <a href="index.html">Home</a>
-    <a href="create-campaign.html">Start Campaign</a>
-    <a href="userDashboard.html">Dashboard</a>
-    <button onclick="logout()">Logout</button>
-` : `
-  <a href="index.html">Home</a>
-  <a href="login.html">Login</a>
-  <a href="register.html">Register</a>
-`;
-
-function logout() {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
-}
+nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();
 
 const params = new URLSearchParams(window.location.search);
 const campaignId = params.get("id");
 if (!campaignId) window.location.href = "index.html";
-
-function showConfirm(message) {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("confirm-modal");
-    document.getElementById("modal-message").textContent = message;
-    modal.classList.remove("hidden");
-
-    const cleanup = () => {
-      modal.classList.add("hidden");
-      document.getElementById("confirm-yes").onclick = null;
-      document.getElementById("confirm-no").onclick = null;
-    };
-
-    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
-    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
-  });
-}
 
 async function loadCampaign() {
   const res = await fetch(`${BASE_URL}/campaigns/${campaignId}`);

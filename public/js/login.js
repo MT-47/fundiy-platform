@@ -1,15 +1,3 @@
-const BASE_URL = window.location.origin;
-
-function showError(fieldId, errorId, message) {
-  document.getElementById(errorId).textContent = message;
-  document.getElementById(fieldId).classList.add("input-error");
-}
-
-function clearError(fieldId, errorId) {
-  document.getElementById(errorId).textContent = "";
-  document.getElementById(fieldId).classList.remove("input-error");
-}
-
 function validateEmail() {
   const email = document.getElementById("email").value.trim();
   if (!email) { showError("email", "email-error", "Email is required."); return false; }

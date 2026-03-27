@@ -1,93 +1,10 @@
-const BASE_URL = window.location.origin;
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 if (!currentUser || currentUser.role === "admin") {
   window.location.href = "login.html";
 }
 
-document.getElementById("main-nav").innerHTML = `
-  <span id="user-name">Hi, ${currentUser.name}</span>
-    <a href="index.html">Home</a>
-    <a href="create-campaign.html">Start Campaign</a>
-    <a href="userDashboard.html">Dashboard</a>
-    <button onclick="logout()">Logout</button>
-`;
-
-function logout() {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
-}
-
+document.getElementById("main-nav").innerHTML = getAuthenticatedNav(currentUser.name);
 document.getElementById("welcome-msg").textContent = `Welcome, ${currentUser.name}!`;
-
-function showConfirm(message) {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("confirm-modal");
-    document.getElementById("modal-message").textContent = message;
-    modal.classList.remove("hidden");
-
-    const cleanup = () => {
-      modal.classList.add("hidden");
-      document.getElementById("confirm-yes").onclick = null;
-      document.getElementById("confirm-no").onclick = null;
-    };
-
-    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
-    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
-  });
-}
-
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-function showError(fieldId, errorId, message) {
-  document.getElementById(errorId).textContent = message;
-  document.getElementById(fieldId).classList.add("input-error");
-}
-
-function clearError(fieldId, errorId) {
-  document.getElementById(errorId).textContent = "";
-  document.getElementById(fieldId).classList.remove("input-error");
-}
-
-function validateTitle() {
-  const value = document.getElementById("edit-title").value.trim();
-  if (!value) { showError("edit-title", "edit-title-error", "Title is required."); return false; }
-  if (!/^[a-zA-Z\s]+$/.test(value)) { showError("edit-title", "edit-title-error", "Title must contain letters only."); return false; }
-  if (value.length < 3) { showError("edit-title", "edit-title-error", "Title must be at least 3 characters."); return false; }
-  clearError("edit-title", "edit-title-error");
-  return true;
-}
-
-function validateDescription() {
-  const value = document.getElementById("edit-description").value.trim();
-  if (!value) { showError("edit-description", "edit-description-error", "Description is required."); return false; }
-  if (value.length < 10) { showError("edit-description", "edit-description-error", "Description must be at least 10 characters."); return false; }
-  clearError("edit-description", "edit-description-error");
-  return true;
-}
-
-function validateGoal() {
-  const value = Number(document.getElementById("edit-goal").value);
-  if (!value && value !== 0) { showError("edit-goal", "edit-goal-error", "Goal amount is required."); return false; }
-  if (value <= 0) { showError("edit-goal", "edit-goal-error", "Goal must be greater than $0."); return false; }
-  clearError("edit-goal", "edit-goal-error");
-  return true;
-}
-
-function validateDeadline() {
-  const value = document.getElementById("edit-deadline").value;
-  if (!value) { showError("edit-deadline", "edit-deadline-error", "Deadline is required."); return false; }
-  if (value <= new Date().toISOString().split("T")[0]) { showError("edit-deadline", "edit-deadline-error", "Deadline must be in the future."); return false; }
-  clearError("edit-deadline", "edit-deadline-error");
-  return true;
-}
 
 function showEditModal(campaign) {
   return new Promise((resolve) => {
@@ -130,6 +47,39 @@ function showEditModal(campaign) {
   });
 }
 
+function validateTitle() {
+  const value = document.getElementById("edit-title").value.trim();
+  if (!value) { showError("edit-title", "edit-title-error", "Title is required."); return false; }
+  if (!/^[a-zA-Z\s]+$/.test(value)) { showError("edit-title", "edit-title-error", "Title must contain letters only."); return false; }
+  if (value.length < 3) { showError("edit-title", "edit-title-error", "Title must be at least 3 characters."); return false; }
+  clearError("edit-title", "edit-title-error");
+  return true;
+}
+
+function validateDescription() {
+  const value = document.getElementById("edit-description").value.trim();
+  if (!value) { showError("edit-description", "edit-description-error", "Description is required."); return false; }
+  if (value.length < 10) { showError("edit-description", "edit-description-error", "Description must be at least 10 characters."); return false; }
+  clearError("edit-description", "edit-description-error");
+  return true;
+}
+
+function validateGoal() {
+  const value = Number(document.getElementById("edit-goal").value);
+  if (!value && value !== 0) { showError("edit-goal", "edit-goal-error", "Goal amount is required."); return false; }
+  if (value <= 0) { showError("edit-goal", "edit-goal-error", "Goal must be greater than $0."); return false; }
+  clearError("edit-goal", "edit-goal-error");
+  return true;
+}
+
+function validateDeadline() {
+  const value = document.getElementById("edit-deadline").value;
+  if (!value) { showError("edit-deadline", "edit-deadline-error", "Deadline is required."); return false; }
+  if (value <= new Date().toISOString().split("T")[0]) { showError("edit-deadline", "edit-deadline-error", "Deadline must be in the future."); return false; }
+  clearError("edit-deadline", "edit-deadline-error");
+  return true;
+}
+
 async function loadMyCampaigns() {
   const res = await fetch(`${BASE_URL}/campaigns?creatorId=${currentUser.id}`);
   const campaigns = await res.json();
@@ -169,7 +119,7 @@ async function editCampaign(id) {
   await fetch(`${BASE_URL}/campaigns/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({...updated, isApproved: false})
+    body: JSON.stringify({ ...updated, isApproved: false })
   });
   loadMyCampaigns();
 }

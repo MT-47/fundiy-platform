@@ -1,24 +1,7 @@
-const BASE_URL = window.location.origin;
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 const nav = document.getElementById("main-nav");
 
-nav.innerHTML = currentUser ? `
-  <span id="user-name">Hi, ${currentUser.name}</span>
-  <a href="index.html">Home</a>
-  <a href="create-campaign.html">Start Campaign</a>
-  <a href="userDashboard.html">Dashboard</a>
-  <button onclick="logout()">Logout</button>
-` : `
-  <a href="index.html">Home</a>
-  <a href="login.html">Login</a>
-  <a href="register.html">Register</a>
-`;
-
-function logout() {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
-}
+nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();
 
 async function loadCampaigns(query = "") {
   let url = `${BASE_URL}/campaigns?isApproved=true`;

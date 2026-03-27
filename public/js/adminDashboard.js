@@ -1,6 +1,4 @@
-const BASE_URL = window.location.origin;
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 if (!currentUser || currentUser.role !== "admin") {
   window.location.href = "login.html";
 }
@@ -8,26 +6,8 @@ if (!currentUser || currentUser.role !== "admin") {
 document.getElementById("admin-name").textContent = `Welcome, ${currentUser.name}`;
 
 document.getElementById("logout-btn").addEventListener("click", () => {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
+  logout();
 });
-
-function showConfirm(message) {
-  return new Promise((resolve) => {
-    const modal = document.getElementById("confirm-modal");
-    document.getElementById("modal-message").textContent = message;
-    modal.classList.remove("hidden");
-
-    const cleanup = () => {
-      modal.classList.add("hidden");
-      document.getElementById("confirm-yes").onclick = null;
-      document.getElementById("confirm-no").onclick = null;
-    };
-
-    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
-    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
-  });
-}
 
 async function loadUsers() {
   const res = await fetch(`${BASE_URL}/users`);
@@ -70,7 +50,9 @@ async function loadCampaigns() {
     div.innerHTML = `
       <p><strong>${campaign.title}</strong></p>
       <p>Status: ${campaign.isApproved ? "✅ Approved" : "⏳ Pending"}</p>
-      ${campaign.isApproved ? div.innerHTML = `<button class="btn btn-red" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Reject</button>` : div.innerHTML = `<button class="btn btn-green" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Approve</button>` 
+      ${campaign.isApproved
+        ? `<button class="btn btn-red" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Reject</button>`
+        : `<button class="btn btn-green" onclick="approveCampaign(${campaign.id}, ${campaign.isApproved})">Approve</button>`
       }
       <button class="btn btn-red" onclick="deleteCampaign(${campaign.id})">Delete</button>
     `;

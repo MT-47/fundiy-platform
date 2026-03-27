@@ -1,42 +1,10 @@
-const BASE_URL = window.location.origin;
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 if (!currentUser || currentUser.role === "admin") {
   window.location.href = "login.html";
 }
 
 const nav = document.getElementById("main-nav");
-nav.innerHTML = `
-  <span id="user-name">Hi, ${currentUser.name}</span>
-  <a href="index.html">Home</a>
-  <a href="create-campaign.html">Start Campaign</a>
-  <a href="userDashboard.html">Dashboard</a>
-  <button onclick="logout()">Logout</button>
-`;
-
-function logout() {
-  localStorage.removeItem("currentUser");
-  window.location.href = "index.html";
-}
-
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-function showError(fieldId, errorId, message) {
-  document.getElementById(errorId).textContent = message;
-  document.getElementById(fieldId).classList.add("input-error");
-}
-
-function clearError(fieldId, errorId) {
-  document.getElementById(errorId).textContent = "";
-  document.getElementById(fieldId).classList.remove("input-error");
-}
+nav.innerHTML = getAuthenticatedNav(currentUser.name);
 
 function validateTitle() {
   const title = document.getElementById("title").value.trim();
