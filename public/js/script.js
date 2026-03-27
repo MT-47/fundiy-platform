@@ -5,7 +5,9 @@ if (currentUser?.role === "admin") {
 
 const nav = document.getElementById("main-nav");
 
-nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();
+nav.innerHTML = currentUser
+  ? getAuthenticatedNav(currentUser.name)
+  : getGuestNav();
 
 async function loadCampaigns(query = "") {
   let url = `${BASE_URL}/campaigns?isApproved=true`;
@@ -22,7 +24,9 @@ async function loadCampaigns(query = "") {
   }
 
   for (const campaign of campaigns) {
-    const pledgesRes = await fetch(`${BASE_URL}/pledges?campaignId=${campaign.id}`);
+    const pledgesRes = await fetch(
+      `${BASE_URL}/pledges?campaignId=${campaign.id}`,
+    );
     const pledges = await pledgesRes.json();
     const raised = pledges.reduce((sum, p) => sum + p.amount, 0);
     const percent = Math.min((raised / campaign.goal) * 100, 100).toFixed(0);
@@ -30,7 +34,7 @@ async function loadCampaigns(query = "") {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
-      <img src="${campaign.image || 'images/placeholder.png'}" alt="${campaign.title}" />
+      <img src="${campaign.image || "images/placeholder.png"}" alt="${campaign.title}" />
       <div class="card-body">
         <h3>${campaign.title}</h3>
         <div class="progress-bar">

@@ -1,13 +1,19 @@
 function validateEmail() {
   const email = document.getElementById("email").value.trim();
-  if (!email) { showError("email", "email-error", "Email is required."); return false; }
+  if (!email) {
+    showError("email", "email-error", "Email is required.");
+    return false;
+  }
   clearError("email", "email-error");
   return true;
 }
 
 function validatePassword() {
   const password = document.getElementById("password").value.trim();
-  if (!password) { showError("password", "password-error", "Password is required."); return false; }
+  if (!password) {
+    showError("password", "password-error", "Password is required.");
+    return false;
+  }
   clearError("password", "password-error");
   return true;
 }
@@ -22,7 +28,9 @@ document.getElementById("login-btn").addEventListener("click", async () => {
   const password = document.getElementById("password").value.trim();
 
   try {
-    const res = await fetch(`${BASE_URL}/users?email=${email}&password=${password}`);
+    const res = await fetch(
+      `${BASE_URL}/users?email=${email}&password=${password}`,
+    );
     const users = await res.json();
 
     if (users.length === 0) {
@@ -37,9 +45,10 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     }
 
     localStorage.setItem("currentUser", JSON.stringify(user));
-    window.location.href = user.role === "admin" ? "adminDashboard.html" : "index.html";
-
+    window.location.href =
+      user.role === "admin" ? "adminDashboard.html" : "index.html";
   } catch {
-    document.getElementById("general-error").textContent = "Something went wrong. Try again.";
+    document.getElementById("general-error").textContent =
+      "Something went wrong. Try again.";
   }
 });

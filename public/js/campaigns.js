@@ -4,7 +4,9 @@ if (currentUser?.role === "admin") {
 }
 const nav = document.getElementById("main-nav");
 
-nav.innerHTML = currentUser ? getAuthenticatedNav(currentUser.name) : getGuestNav();
+nav.innerHTML = currentUser
+  ? getAuthenticatedNav(currentUser.name)
+  : getGuestNav();
 
 const params = new URLSearchParams(window.location.search);
 const campaignId = params.get("id");
@@ -14,13 +16,15 @@ async function loadCampaign() {
   const res = await fetch(`${BASE_URL}/campaigns/${campaignId}`);
   const campaign = await res.json();
 
-  const pledgesRes = await fetch(`${BASE_URL}/pledges?campaignId=${campaignId}`);
+  const pledgesRes = await fetch(
+    `${BASE_URL}/pledges?campaignId=${campaignId}`,
+  );
   const pledges = await pledgesRes.json();
   const raised = pledges.reduce((sum, p) => sum + p.amount, 0);
   const percent = Math.min((raised / campaign.goal) * 100, 100).toFixed(0);
 
   document.getElementById("campaign-details").innerHTML = `
-    <img src="${campaign.image || 'images/placeholder.png'}" alt="${campaign.title}" />
+    <img src="${campaign.image || "images/placeholder.png"}" alt="${campaign.title}" />
     <h2>${campaign.title}</h2>
     <p>${campaign.description}</p>
     <div class="progress-bar">
@@ -84,7 +88,11 @@ document.getElementById("pledge-btn").addEventListener("click", async () => {
   await fetch(`${BASE_URL}/pledges`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ campaignId: Number(campaignId), userId: currentUser.id, amount })
+    body: JSON.stringify({
+      campaignId: Number(campaignId),
+      userId: currentUser.id,
+      amount,
+    }),
   });
 
   pledgeMsg.textContent = "✅ Pledge successful! Thank you!";

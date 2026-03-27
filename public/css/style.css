@@ -1,48 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap");
 
 /*  VARIABLES */
 :root {
-  --bg:         #ececec;
-  --surface:    #f4f7f5;
-  --surface2:   #f0f4f2;
-  --border:     #e2e8e5;
-  --text:       #1f2937;
+  --bg: #ececec;
+  --surface: #f4f7f5;
+  --surface2: #f0f4f2;
+  --border: #e2e8e5;
+  --text: #1f2937;
   --text-muted: #6b7280;
-  --text-dim:   #9ca3af;
-  --green:      #02a95c;
+  --text-dim: #9ca3af;
+  --green: #02a95c;
   --green-dark: #028a4c;
-  --red:        #e5484d;
-  --red-dark:   #c9363c;
-  --white:      #ffffff;
-  --black:      #111827;
-  --blur:       rgba(255,255,255,0.7);
-  --radius:       14px;
-  --radius-sm:    8px;
-  --shadow:     0 4px 20px rgba(0,0,0,0.05);
-  --shadow-red:   0 0 0 3px rgba(229,72,77,0.08);
-  --shadow-green: 0 0 0 3px rgba(2,169,92,0.12);
-  --transition:   0.2s ease;
+  --red: #e5484d;
+  --red-dark: #c9363c;
+  --white: #ffffff;
+  --black: #111827;
+  --blur: rgba(255, 255, 255, 0.7);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-red: 0 0 0 3px rgba(229, 72, 77, 0.08);
+  --shadow-green: 0 0 0 3px rgba(2, 169, 92, 0.12);
+  --transition: 0.2s ease;
   --transition-nav: transform 0.25s ease, opacity 0.25s ease;
 }
 
 /* RESET */
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   max-width: 100%;
 }
 
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(2,169,92,0.08), transparent 40%),
-    radial-gradient(circle at 80% 0%, rgba(2,169,92,0.06), transparent 40%),
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(2, 169, 92, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(2, 169, 92, 0.06), transparent 40%),
     var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -50,9 +51,16 @@ body {
   padding-top: 68px;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
 
 /* LAYOUT */
 main {
@@ -86,7 +94,7 @@ header {
 }
 
 .logo {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 1.6rem;
   font-weight: 900;
   color: var(--green);
@@ -96,7 +104,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: var(--transition-nav)
+  transition: var(--transition-nav);
 }
 
 nav a {
@@ -222,7 +230,7 @@ footer {
 }
 
 .form-container h2 {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 20px;
@@ -355,7 +363,7 @@ footer {
 
 /* DASHBOARD WELCOME HEADING */
 #welcome-msg {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 2rem;
   font-weight: 900;
   color: var(--text);
@@ -431,7 +439,7 @@ footer {
 }
 
 .modal-title {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text);
@@ -455,7 +463,9 @@ footer {
   border: none;
 }
 
-.burger:hover { background: var(--surface2); }
+.burger:hover {
+  background: var(--surface2);
+}
 
 .burger span {
   display: block;
@@ -466,9 +476,16 @@ footer {
   transition: all var(--transition);
 }
 
-.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 @media (max-width: 768px) {
   .burger {
@@ -484,7 +501,7 @@ footer {
     border-bottom: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    padding: 16px 16px ;
+    padding: 16px 16px;
     transform: translateY(-200%);
     opacity: 0;
     transition: all 0.3s ease;
@@ -503,7 +520,7 @@ footer {
     text-align: left;
   }
 
-  nav button{
+  nav button {
     margin-bottom: 20px;
   }
 }
@@ -518,7 +535,7 @@ footer {
 }
 
 .hero h2 {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
   margin-bottom: 16px;
@@ -639,7 +656,7 @@ footer {
 }
 
 #campaign-details h2 {
-  font-family: 'Fraunces', serif;
+  font-family: "Fraunces", serif;
   font-size: 2rem;
   font-weight: 900;
   color: var(--text);

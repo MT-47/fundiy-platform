@@ -22,7 +22,7 @@
     }
   });
 
-  nav.querySelectorAll("a").forEach(link => {
+  nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       burger.classList.remove("open");
       nav.classList.remove("nav-open");

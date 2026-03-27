@@ -3,7 +3,8 @@ if (!currentUser || currentUser.role !== "admin") {
   window.location.href = "login.html";
 }
 
-document.getElementById("admin-name").textContent = `Welcome, ${currentUser.name}`;
+document.getElementById("admin-name").textContent =
+  `Welcome, ${currentUser.name}`;
 
 document.getElementById("logout-btn").addEventListener("click", () => {
   logout();
@@ -15,10 +16,12 @@ async function loadUsers() {
   const container = document.getElementById("users-container");
   container.innerHTML = "";
 
-  users.filter(u => u.role !== "admin").forEach(user => {
-    const div = document.createElement("div");
-    div.classList.add("admin-card");
-    div.innerHTML = `
+  users
+    .filter((u) => u.role !== "admin")
+    .forEach((user) => {
+      const div = document.createElement("div");
+      div.classList.add("admin-card");
+      div.innerHTML = `
       <div class="admin-card-header">
         <h4>👤 ${user.name}</h4>
         <span class="badge ${user.isActive ? "badge-green" : "badge-red"}">
@@ -36,15 +39,15 @@ async function loadUsers() {
         </button>
       </div>
     `;
-    container.appendChild(div);
-  });
+      container.appendChild(div);
+    });
 }
 
 async function banUser(id, isActive) {
   await fetch(`${BASE_URL}/users/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isActive: !isActive })
+    body: JSON.stringify({ isActive: !isActive }),
   });
   loadUsers();
 }
@@ -53,29 +56,32 @@ async function loadCampaigns() {
   const [camRes, pledgeRes, userRes] = await Promise.all([
     fetch(`${BASE_URL}/campaigns`),
     fetch(`${BASE_URL}/pledges`),
-    fetch(`${BASE_URL}/users`)
+    fetch(`${BASE_URL}/users`),
   ]);
 
   const campaigns = await camRes.json();
-  const pledges   = await pledgeRes.json();
-  const users     = await userRes.json();
+  const pledges = await pledgeRes.json();
+  const users = await userRes.json();
 
   const container = document.getElementById("campaigns-container");
   container.innerHTML = "";
 
-  campaigns.forEach(campaign => {
+  campaigns.forEach((campaign) => {
     const raised = pledges
-      .filter(p => p.campaignId === campaign.id)
+      .filter((p) => p.campaignId === campaign.id)
       .reduce((sum, p) => sum + p.amount, 0);
 
     const percent = Math.min(100, Math.round((raised / campaign.goal) * 100));
 
-    const creator = users.find(u => u.id === campaign.creatorId);
+    const creator = users.find((u) => u.id === campaign.creatorId);
     const creatorName = creator ? creator.name : `User #${campaign.creatorId}`;
 
     const deadline = new Date(campaign.deadline);
-    const today    = new Date();
-    const daysLeft = Math.max(0, Math.ceil((deadline - today) / (1000 * 60 * 60 * 24)));
+    const today = new Date();
+    const daysLeft = Math.max(
+      0,
+      Math.ceil((deadline - today) / (1000 * 60 * 60 * 24)),
+    );
 
     const div = document.createElement("div");
     div.classList.add("admin-card", "campaign-admin-card");
@@ -105,9 +111,10 @@ async function loadCampaigns() {
         </div>
       </div>
       <div class="admin-card-actions">
-        ${campaign.isApproved
-          ? `<button class="btn btn-red" onclick="approveCampaign(${campaign.id}, true)">Reject</button>`
-          : `<button class="btn btn-green" onclick="approveCampaign(${campaign.id}, false)"> Approve</button>`
+        ${
+          campaign.isApproved
+            ? `<button class="btn btn-red" onclick="approveCampaign(${campaign.id}, true)">Reject</button>`
+            : `<button class="btn btn-green" onclick="approveCampaign(${campaign.id}, false)"> Approve</button>`
         }
         <button class="btn btn-red" onclick="deleteCampaign(${campaign.id})">Delete</button>
       </div>
@@ -120,7 +127,7 @@ async function approveCampaign(id, isApproved) {
   await fetch(`${BASE_URL}/campaigns/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isApproved: !isApproved })
+    body: JSON.stringify({ isApproved: !isApproved }),
   });
   loadCampaigns();
 }

@@ -1,4 +1,3 @@
-
 const BASE_URL = window.location.origin;
 
 function getCurrentUser() {
@@ -59,7 +58,13 @@ function showConfirm(message) {
       document.getElementById("confirm-no").onclick = null;
     };
 
-    document.getElementById("confirm-yes").onclick = () => { cleanup(); resolve(true); };
-    document.getElementById("confirm-no").onclick = () => { cleanup(); resolve(false); };
+    document.getElementById("confirm-yes").onclick = () => {
+      cleanup();
+      resolve(true);
+    };
+    document.getElementById("confirm-no").onclick = () => {
+      cleanup();
+      resolve(false);
+    };
   });
 }
