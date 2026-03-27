@@ -109,16 +109,6 @@
       "id": 5
     },
     {
-      "title": "Spring Fruits",
-      "creatorId": 3,
-      "goal": 200,
-      "deadline": "2030-12-31",
-      "isApproved": true,
-      "description": "hhhhhhhhhh",
-      "image": "./images/spring-fruits.png",
-      "id": 6
-    },
-    {
       "title": "Coffee Shop",
       "creatorId": 3,
       "goal": 2000,
@@ -126,7 +116,7 @@
       "isApproved": true,
       "description": "Fund my coffee shop plz",
       "image": "./images/coffee-shop.png",
-      "id": 7
+      "id": 6
     },
     {
       "title": "School",
@@ -136,6 +126,16 @@
       "isApproved": true,
       "description": "Building new school",
       "image": "./images/school-building.png",
+      "id": 7
+    },
+    {
+      "title": "Spring Fruits",
+      "creatorId": 3,
+      "goal": 200,
+      "deadline": "2030-12-31",
+      "isApproved": true,
+      "description": "hhhhhhhhhh",
+      "image": "./images/spring-fruits.png",
       "id": 8
     }
   ],
