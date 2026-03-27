@@ -47,7 +47,7 @@
     {
       "title": "Coffee Shop",
       "creatorId": 3,
-      "goal": 1000,
+      "goal": 2000,
       "deadline": "2030-04-29",
       "isApproved": true,
       "description": "Fund my coffee shop plz",
@@ -67,7 +67,7 @@
     {
       "title": "Spring Fruits",
       "creatorId": 3,
-      "goal": 100,
+      "goal": 200,
       "deadline": "2030-12-31",
       "isApproved": true,
       "description": "hhhhhhhhhh",
